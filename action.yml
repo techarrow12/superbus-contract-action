@@ -1,0 +1,47 @@
+name: "Superbus Contract Action"
+description: "Check that a pull request stayed inside an Agent Contract."
+author: "Superbus"
+branding:
+  icon: shield
+  color: black
+
+inputs:
+  github-token:
+    description: "GitHub token used to fetch PR changed files and post comments."
+    required: false
+    default: "${{ github.token }}"
+  contract-path:
+    description: "Path to an Agent Contract JSON file in the checked-out repository."
+    required: false
+    default: ".superbus/agent-contract.json"
+  contract-json:
+    description: "Inline Agent Contract JSON. Use this or contract-path, not both."
+    required: false
+  post-comment:
+    description: "Post a PR comment with the contract check result."
+    required: false
+    default: "true"
+  fail-on-violation:
+    description: "Fail the workflow when the PR violates the contract."
+    required: false
+    default: "false"
+  update-comment:
+    description: "Update the existing Superbus comment instead of posting duplicates."
+    required: false
+    default: "true"
+
+outputs:
+  compliance_status:
+    description: "within_contract, violated_contract, or not_applicable."
+  changed_file_count:
+    description: "Number of PR changed files checked."
+  violation_count:
+    description: "Number of contract violations found."
+  contract_violated:
+    description: "true when the PR violated the Agent Contract."
+  comment_url:
+    description: "URL of the PR comment when one was posted."
+
+runs:
+  using: "node20"
+  main: "dist/main.js"

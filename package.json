@@ -1,0 +1,31 @@
+{
+  "name": "superbus-contract-action",
+  "version": "0.1.0",
+  "description": "GitHub Action that checks PR changed files against an Agent Contract.",
+  "type": "module",
+  "private": true,
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "github-action",
+    "agent-contract",
+    "ai-pr",
+    "scope-compliance"
+  ],
+  "license": "MIT",
+  "packageManager": "pnpm@9.15.4",
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.6",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
+  }
+}

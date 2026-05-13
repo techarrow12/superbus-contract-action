@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "write_allowed",
+  "allowed_scope": ["src/**", "tests/**"],
+  "blocked_scope": ["src/auth/**", "src/payments/**", ".github/workflows/**"],
+  "max_files": 5
+}

@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "write_allowed",
+  "allowed_scope": ["src/profile/**", "tests/**"],
+  "blocked_scope": ["src/payments/**"],
+  "max_files": 3
+}

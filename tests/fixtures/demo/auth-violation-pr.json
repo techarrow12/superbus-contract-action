@@ -1,0 +1,4 @@
+[
+  "src/billing/currency.ts",
+  "src/auth/session.ts"
+]

@@ -1,0 +1,4 @@
+[
+  "src/billing/currency.ts",
+  "src/payments/stripe.ts"
+]
