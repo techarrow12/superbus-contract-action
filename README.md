@@ -2,6 +2,10 @@
 
 No AI PR without a contract.
 
+![Superbus Contract Action showing a Contract Violated PR comment.](docs/assets/contract-violated.svg)
+
+<p align="center"><sub>Superbus checks PR changed-file paths against an Agent Contract and comments when the PR goes out of bounds.</sub></p>
+
 Superbus Contract Action checks whether an AI-generated PR stayed inside its Agent Contract.
 
 ## Why
