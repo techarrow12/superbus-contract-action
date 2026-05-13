@@ -31,7 +31,7 @@ From `public/superbus-contract-action/`:
 | No Claude/API/private intelligence | Passed. Runtime source includes no Claude, Anthropic, OpenAI, AgentPoints, Prompt Doctor, forecasting, task classification, policy, telemetry, eval, hosted app, billing, or dashboard logic. |
 | Limitations are explicit | Passed. README and docs state that v1 checks supplied contracts only, does not generate contracts, checks file paths rather than semantics, and does not detect every unsafe change. |
 | Security docs are accurate | Passed. Security docs describe path-only GitHub checks, contract-file reading, no source upload, and no external APIs besides GitHub. |
-| Release checklist exists | Passed. `RELEASE_CHECKLIST.md` exists. |
+| Release checklist exists | Passed. `docs/release/RELEASE_CHECKLIST.md` exists. |
 
 ## Privacy And Scope Verification
 

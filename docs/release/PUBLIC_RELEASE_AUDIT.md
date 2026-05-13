@@ -26,7 +26,7 @@ Scanned publish/source files:
 - `LICENSE`
 - `package.json`
 - `README.md`
-- `RELEASE_CHECKLIST.md`
+- `docs/release/RELEASE_CHECKLIST.md`
 - `schema/agent-contract.schema.json`
 - `SECURITY.md`
 - `src/comment.ts`
@@ -112,7 +112,7 @@ Additional audit scans:
 rg --files --glob '!node_modules/**' --glob '!dist/**'
 rg '<private-concept-patterns>' . --glob '!node_modules/**' --glob '!dist/**'
 rg '<runtime-access-patterns>' src --glob '!node_modules/**' --glob '!dist/**'
-rg '<private-concept-patterns>' dist src action.yml package.json README.md docs examples schema SECURITY.md CONTRIBUTING.md RELEASE_CHECKLIST.md --glob '!node_modules/**'
+rg '<private-concept-patterns>' dist src action.yml package.json README.md docs examples schema SECURITY.md CONTRIBUTING.md docs/release/RELEASE_CHECKLIST.md --glob '!node_modules/**'
 ```
 
 ## Test And Build Result

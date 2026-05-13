@@ -15,7 +15,6 @@ A GitHub Action that checks whether PR changed files stayed inside an Agent Cont
 ```json
 {
   "schema_version": 1,
-  "mode": "write_allowed",
   "allowed_scope": ["src/billing/currency.ts", "tests/billing.test.ts"],
   "blocked_scope": ["src/payments/**", "src/auth/**", ".github/**"],
   "max_files": 2
@@ -84,6 +83,8 @@ The open-source action checks contracts. It does not generate them.
 ```
 
 See [the contract schema](docs/contract-schema.md) for the TypeScript type, field reference, and glob examples.
+
+Contract `mode` defaults to `write_allowed`. Use `inspect_only` or `approval_required` when a PR should not merge until the contract is changed or explicitly approved.
 
 ## Common Examples
 

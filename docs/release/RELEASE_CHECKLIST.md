@@ -26,7 +26,7 @@ pnpm build
 - `LICENSE`
 - `SECURITY.md`
 - `CONTRIBUTING.md`
-- `RELEASE_CHECKLIST.md`
+- `docs/release/RELEASE_CHECKLIST.md`
 - `package.json`
 - `pnpm-lock.yaml`
 - `pnpm-workspace.yaml`
