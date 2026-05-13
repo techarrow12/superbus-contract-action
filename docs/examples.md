@@ -2,21 +2,21 @@
 
 All examples are valid Agent Contract JSON. Put one at `.superbus/agent-contract.json` or pass it through `contract-json`.
 
-## Bounded Implementation
+## Billing-Safe
 
-Use this when the agent should touch one feature area and its test.
+Use this when the agent should touch billing currency logic, but never payment processing, auth, database, or workflow files.
 
 ```json
 {
   "schema_version": 1,
   "mode": "write_allowed",
-  "allowed_scope": ["src/profile/**", "tests/profile.test.ts"],
-  "blocked_scope": ["src/payments/**", "src/auth/**", ".github/workflows/**"],
-  "max_files": 4
+  "allowed_scope": ["src/billing/currency.ts", "tests/billing.test.ts"],
+  "blocked_scope": ["src/payments/**", "src/auth/**", "src/db/**", ".github/**"],
+  "max_files": 2
 }
 ```
 
-If the PR changes `src/payments/checkout.ts`, Superbus reports `Contract Violated`.
+If the PR changes `src/payments/stripe.ts`, Superbus reports `Contract Violated`.
 
 ## Docs Only
 
@@ -33,6 +33,22 @@ Use this for documentation edits.
 ```
 
 If the PR changes `src/index.ts`, Superbus reports `Contract Violated`.
+
+## Auth Blocked
+
+Use this for product/profile work where auth must stay untouched.
+
+```json
+{
+  "schema_version": 1,
+  "mode": "write_allowed",
+  "allowed_scope": ["src/profile/**", "tests/profile.test.ts"],
+  "blocked_scope": ["src/auth/**", "src/payments/**"],
+  "max_files": 4
+}
+```
+
+If the PR changes `src/auth/session.ts`, Superbus reports `Contract Violated`.
 
 ## Inspect Only
 

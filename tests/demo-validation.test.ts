@@ -28,13 +28,13 @@ describe("billing currency demo validation", () => {
       fixture: "payment-violation-pr.json",
       expectedStatus: "violated_contract",
       changedFileCount: 2,
-      violationCount: 2,
+      violationCount: 1,
     },
     {
       fixture: "auth-violation-pr.json",
       expectedStatus: "violated_contract",
       changedFileCount: 2,
-      violationCount: 2,
+      violationCount: 1,
     },
     {
       fixture: "max-files-violation-pr.json",

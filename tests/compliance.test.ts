@@ -76,8 +76,16 @@ describe("scope compliance", () => {
   it("fails blocked payment paths", () => {
     const result = checkCompliance(baseContract, ["src/payments/stripe.ts"]);
     expect(result.status).toBe("violated_contract");
-    expect(result.violations.some((violation) => violation.rule === "blocked_scope")).toBe(true);
+    expect(result.violations).toEqual([
+      expect.objectContaining({
+        file: "src/payments/stripe.ts",
+        rule: "blocked_scope",
+        matched_pattern: "src/payments/**",
+        reason: "src/payments/stripe.ts matched blocked_scope: src/payments/**.",
+      }),
+    ]);
     expect(result.blocked_files_touched).toEqual(["src/payments/stripe.ts"]);
+    expect(result.out_of_scope_files).toEqual([]);
   });
 
   it("fails blocked payment paths with traversal, leading slash, double slash, and case formatting", () => {
@@ -140,7 +148,13 @@ describe("scope compliance", () => {
     expect(result.status).toBe("violated_contract");
     expect(result.blocked_files_touched).toEqual(["src/payments/checkout.ts"]);
     expect(result.out_of_scope_files).toEqual([]);
-    expect(result.violations.some((violation) => violation.rule === "blocked_scope")).toBe(true);
+    expect(result.violations).toEqual([
+      expect.objectContaining({
+        file: "src/payments/checkout.ts",
+        rule: "blocked_scope",
+        matched_pattern: "src/payments/**",
+      }),
+    ]);
   });
 
   it("fails every changed file when blocked_scope is **/*", () => {

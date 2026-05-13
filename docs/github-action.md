@@ -8,9 +8,9 @@ It is intentionally narrow:
 Agent Contract -> GitHub PR file paths -> scope check -> PR comment / optional CI failure
 ```
 
-## Minimal Workflow
+## Fast Path
 
-Create `.superbus/agent-contract.json`, then add `.github/workflows/superbus-contract-check.yml`:
+Start in observe mode. Create `.superbus/agent-contract.json`, then add `.github/workflows/superbus-contract-check.yml`:
 
 ```yaml
 name: Superbus Contract Check
@@ -58,7 +58,7 @@ jobs:
 
 With `post-comment=false`, the action does not call GitHub comment APIs.
 
-## Enforce Mode
+## Switch To Enforce Mode
 
 To fail CI when the contract is violated:
 
@@ -93,6 +93,16 @@ with:
 ```
 
 Use either a custom `contract-path` or `contract-json`, not both.
+
+## Contract Examples
+
+Copy-ready contract recipes live in [examples.md](examples.md).
+
+Good starting points:
+
+- docs-only changes
+- billing-safe changes
+- auth-blocked product work
 
 ## Inputs
 

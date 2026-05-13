@@ -1,5 +1,5 @@
 import type { AgentContract } from "./contract.js";
-import { matchesAnyPattern, normalizePath } from "./glob.js";
+import { matchesAnyPattern, matchesPattern, normalizePath } from "./glob.js";
 
 export type ComplianceStatus =
   | "within_contract"
@@ -10,6 +10,7 @@ export interface ScopeViolation {
   file: string;
   reason: string;
   severity: "blocker" | "warning";
+  matched_pattern?: string;
   rule:
     | "inspect_only"
     | "approval_required"
@@ -76,18 +77,24 @@ export function checkCompliance(
 
   const blockedScope = contract.blocked_scope ?? [];
   for (const file of files) {
-    if (matchesAnyPattern(file, blockedScope)) {
+    const matchedPattern = findMatchingPattern(file, blockedScope);
+    if (matchedPattern) {
       blockedFilesTouched.push(file);
       violations.push({
         file,
-        reason: "File matches blocked_scope.",
+        reason: `${file} matched blocked_scope: ${matchedPattern}.`,
         severity: "blocker",
+        matched_pattern: matchedPattern,
         rule: "blocked_scope",
       });
     }
   }
 
+  const blockedFileSet = new Set(blockedFilesTouched);
   for (const file of files) {
+    if (blockedFileSet.has(file)) {
+      continue;
+    }
     if (!matchesAnyPattern(file, contract.allowed_scope)) {
       outOfScopeFiles.push(file);
       violations.push({
@@ -109,6 +116,10 @@ export function checkCompliance(
   }
 
   return buildResult(files.length, violations, blockedFilesTouched, outOfScopeFiles);
+}
+
+function findMatchingPattern(file: string, patterns: string[]): string | undefined {
+  return patterns.find((pattern) => matchesPattern(file, pattern));
 }
 
 function buildResult(

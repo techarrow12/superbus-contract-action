@@ -187,17 +187,23 @@ function checkCompliance(contract, changedFiles) {
   }
   const blockedScope = contract.blocked_scope ?? [];
   for (const file of files) {
-    if (matchesAnyPattern(file, blockedScope)) {
+    const matchedPattern = findMatchingPattern(file, blockedScope);
+    if (matchedPattern) {
       blockedFilesTouched.push(file);
       violations.push({
         file,
-        reason: "File matches blocked_scope.",
+        reason: `${file} matched blocked_scope: ${matchedPattern}.`,
         severity: "blocker",
+        matched_pattern: matchedPattern,
         rule: "blocked_scope"
       });
     }
   }
+  const blockedFileSet = new Set(blockedFilesTouched);
   for (const file of files) {
+    if (blockedFileSet.has(file)) {
+      continue;
+    }
     if (!matchesAnyPattern(file, contract.allowed_scope)) {
       outOfScopeFiles.push(file);
       violations.push({
@@ -217,6 +223,9 @@ function checkCompliance(contract, changedFiles) {
     });
   }
   return buildResult(files.length, violations, blockedFilesTouched, outOfScopeFiles);
+}
+function findMatchingPattern(file, patterns) {
+  return patterns.find((pattern) => matchesPattern(file, pattern));
 }
 function buildResult(changedFileCount, violations, blockedFilesTouched, outOfScopeFiles) {
   if (violations.length === 0) {

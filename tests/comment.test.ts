@@ -32,7 +32,17 @@ describe("comment renderer", () => {
     expect(markdown).toContain("🚫 Contract Violated");
     expect(markdown).toContain("src/auth/session.ts");
     expect(markdown).toContain("blocked_scope");
+    expect(markdown).toContain("src/auth/session.ts matched blocked_scope: src/auth/**.");
     expect(markdown).toContain("Do not merge");
+  });
+
+  it("does not duplicate a blocked file as outside allowed scope", () => {
+    const result = checkCompliance(contract, ["src/auth/session.ts"]);
+    const markdown = renderComment({ contract, result, contractSource: "contract-json" });
+
+    expect(result.violations).toHaveLength(1);
+    expect(markdown).toContain("blocked_scope");
+    expect(markdown).not.toContain("outside_allowed_scope");
   });
 
   it("includes the hidden marker", () => {
