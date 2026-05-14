@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "GitHub Action that checks PR changed files against an Agent Contract.",
   "type": "module",
-  "private": true,
   "main": "dist/main.js",
   "scripts": {
     "build": "tsup",

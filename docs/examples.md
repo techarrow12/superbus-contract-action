@@ -2,15 +2,15 @@
 
 All examples are valid Agent Contract JSON. Put one at `.superbus/agent-contract.json` or pass it through `contract-json`.
 
-## Billing-Safe
+## Feature-Safe
 
-Use this when the agent should touch billing currency logic, but never payment processing, auth, database, or workflow files.
+Use this when the agent should touch a narrow feature area, but never payment processing, auth, database, or workflow files.
 
 ```json
 {
   "schema_version": 1,
   "mode": "write_allowed",
-  "allowed_scope": ["src/billing/currency.ts", "tests/billing.test.ts"],
+  "allowed_scope": ["src/settings/locale.ts", "tests/settings.test.ts"],
   "blocked_scope": ["src/payments/**", "src/auth/**", "src/db/**", ".github/**"],
   "max_files": 2
 }

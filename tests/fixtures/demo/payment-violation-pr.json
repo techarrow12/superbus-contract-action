@@ -1,4 +1,4 @@
 [
-  "src/billing/currency.ts",
+  "src/settings/locale.ts",
   "src/payments/stripe.ts"
 ]

@@ -32,5 +32,3 @@ permissions:
 ## Contract Safety
 
 Review contracts before asking an AI agent to implement them. The open-source action checks whether a PR stayed inside a supplied contract; it does not decide whether the contract itself is safe or complete.
-
-Hosted Superbus will add contract generation, policy templates, approvals, history, and audit.

@@ -8,8 +8,8 @@ This repo is intentionally small. Contributions should preserve the public bound
 - fetch PR changed-file paths only
 - avoid repository source scanning
 - avoid contract generation
-- avoid AI or semantic review features
-- avoid hosted product dependencies
+- avoid behavior-level code review features
+- avoid external service dependencies
 
 ## Development
 
@@ -26,4 +26,4 @@ Please include tests for behavior changes. Keep new inputs and outputs minimal a
 
 ## Maintainer Principle
 
-Open source checks contracts. Hosted Superbus generates, manages, reviews, approves, and audits contracts.
+Keep the action small: supplied contract, PR changed-file paths, deterministic scope check, optional PR comment.

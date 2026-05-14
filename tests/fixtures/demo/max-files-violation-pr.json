@@ -1,5 +1,5 @@
 [
-  "src/billing/currency.ts",
-  "tests/billing.test.ts",
+  "src/settings/locale.ts",
+  "tests/settings.test.ts",
   "README.md"
 ]

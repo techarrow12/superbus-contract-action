@@ -2,7 +2,7 @@
 
 ## Scenario
 
-Task: Refactor billing currency logic.
+Task: Update settings locale logic.
 
 This demo proves the core value of Superbus Contract Action: an AI-generated PR can be checked against the files it was allowed to change.
 
@@ -13,8 +13,8 @@ This demo proves the core value of Superbus Contract Action: an AI-generated PR 
   "schema_version": 1,
   "mode": "write_allowed",
   "allowed_scope": [
-    "src/billing/currency.ts",
-    "tests/billing.test.ts"
+    "src/settings/locale.ts",
+    "tests/settings.test.ts"
   ],
   "blocked_scope": [
     "src/payments/**",
@@ -34,15 +34,15 @@ Changed files:
 
 ```json
 [
-  "src/billing/currency.ts",
-  "tests/billing.test.ts"
+  "src/settings/locale.ts",
+  "tests/settings.test.ts"
 ]
 ```
 
 Expected result:
 
 ```text
-✅ Within Contract
+Within Contract
 ```
 
 The PR changed only the files listed in `allowed_scope` and stayed within `max_files`.
@@ -55,7 +55,7 @@ Changed files:
 
 ```json
 [
-  "src/billing/currency.ts",
+  "src/settings/locale.ts",
   "src/payments/stripe.ts"
 ]
 ```
@@ -63,7 +63,7 @@ Changed files:
 Expected result:
 
 ```text
-🚫 Contract Violated
+Contract Violated
 ```
 
 `src/payments/stripe.ts` is blocked by `src/payments/**` and is outside `allowed_scope`.
@@ -74,7 +74,7 @@ Changed files:
 
 ```json
 [
-  "src/billing/currency.ts",
+  "src/settings/locale.ts",
   "src/auth/session.ts"
 ]
 ```
@@ -82,7 +82,7 @@ Changed files:
 Expected result:
 
 ```text
-🚫 Contract Violated
+Contract Violated
 ```
 
 `src/auth/session.ts` is blocked by `src/auth/**` and is outside `allowed_scope`.
@@ -93,8 +93,8 @@ Changed files:
 
 ```json
 [
-  "src/billing/currency.ts",
-  "tests/billing.test.ts",
+  "src/settings/locale.ts",
+  "tests/settings.test.ts",
   "README.md"
 ]
 ```
@@ -102,7 +102,7 @@ Changed files:
 Expected result:
 
 ```text
-🚫 Contract Violated
+Contract Violated
 ```
 
 The PR changed three files while `max_files` is `2`. `README.md` is also outside `allowed_scope`.
@@ -114,7 +114,7 @@ Safe PR:
 ```text
 ## Superbus Contract Check
 
-✅ Within Contract
+Within Contract
 
 Changed files: 2
 Violations: 0
@@ -126,7 +126,7 @@ Violating PR:
 ```text
 ## Superbus Contract Check
 
-🚫 Contract Violated
+Contract Violated
 
 Changed files: 2
 Violations: 2

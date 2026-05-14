@@ -4,7 +4,7 @@ No AI PR without a contract.
 
 A GitHub Action that checks whether PR changed files stayed inside an Agent Contract.
 
-![Superbus Contract Action showing a Contract Violated PR comment.](docs/assets/contract-violated.svg)
+![Superbus Contract Action showing a Contract Violated PR comment.](docs/assets/contract-violated.png)
 
 <p align="center"><sub>Superbus checks PR changed-file paths against an Agent Contract and comments when the PR goes out of bounds.</sub></p>
 
@@ -15,7 +15,7 @@ A GitHub Action that checks whether PR changed files stayed inside an Agent Cont
 ```json
 {
   "schema_version": 1,
-  "allowed_scope": ["src/billing/currency.ts", "tests/billing.test.ts"],
+  "allowed_scope": ["src/settings/locale.ts", "tests/settings.test.ts"],
   "blocked_scope": ["src/payments/**", "src/auth/**", ".github/**"],
   "max_files": 2
 }
@@ -60,7 +60,7 @@ fail-on-violation: "true"
 
 ## Why
 
-AI coding agents are fast, but a prompt like "refactor billing currency logic" can accidentally touch payments, auth, tests, configs, and CI files.
+AI coding agents are fast, but a narrow prompt can accidentally touch protected application code, tests, configs, and CI files.
 
 Superbus separates scope review from code review:
 
@@ -99,12 +99,12 @@ Contract `mode` defaults to `write_allowed`. Use `inspect_only` or `approval_req
 }
 ```
 
-### Billing-Safe
+### Feature-Safe
 
 ```json
 {
   "schema_version": 1,
-  "allowed_scope": ["src/billing/currency.ts", "tests/billing.test.ts"],
+  "allowed_scope": ["src/settings/locale.ts", "tests/settings.test.ts"],
   "blocked_scope": ["src/payments/**", "src/auth/**", "src/db/**", ".github/**"],
   "max_files": 2
 }
@@ -158,17 +158,17 @@ It does not:
 
 If you do not want PR comments, set `post-comment: "false"`. The action will still set outputs and can still fail CI when `fail-on-violation: "true"`.
 
-## Tired Of Writing Contracts By Hand?
+## Contract Authoring
 
-Open source checks contracts. You can use it with manual contracts forever.
+Superbus Contract Action checks contracts that you provide.
 
-Hosted Superbus is for teams that want contracts generated, managed, approved, and audited for them.
+Write the contract by hand, generate it in your own workflow, or pass it through `contract-json`. The action does not need access to source contents to run the check.
 
 ## Limitations
 
 - v1 checks supplied contracts only.
 - v1 does not generate contracts.
-- v1 checks file paths, not semantic behavior.
+- v1 checks file paths, not runtime behavior.
 - v1 does not detect every unsafe AI code change.
 - v1 does not replace human review.
 

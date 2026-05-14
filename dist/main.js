@@ -530,4 +530,3 @@ function formatContractSource(source) {
 export {
   run
 };
-//# sourceMappingURL=main.js.map

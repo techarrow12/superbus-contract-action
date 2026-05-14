@@ -101,7 +101,7 @@ Copy-ready contract recipes live in [examples.md](examples.md).
 Good starting points:
 
 - docs-only changes
-- billing-safe changes
+- feature-safe changes
 - auth-blocked product work
 
 ## Inputs

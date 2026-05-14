@@ -13,10 +13,10 @@ async function loadJsonFixture<T>(name: string): Promise<T> {
 }
 
 async function loadDemoContract(): Promise<AgentContract> {
-  return validateAgentContract(await loadJsonFixture("billing-currency-contract.json"));
+  return validateAgentContract(await loadJsonFixture("settings-locale-contract.json"));
 }
 
-describe("billing currency demo validation", () => {
+describe("settings locale demo validation", () => {
   it.each([
     {
       fixture: "safe-pr.json",

@@ -2,8 +2,8 @@
   "schema_version": 1,
   "mode": "write_allowed",
   "allowed_scope": [
-    "src/billing/currency.ts",
-    "tests/billing.test.ts"
+    "src/settings/locale.ts",
+    "tests/settings.test.ts"
   ],
   "blocked_scope": [
     "src/payments/**",
